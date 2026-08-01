@@ -74,6 +74,12 @@ class BookingController {
         return bookingService.findByAnnonceur(currentUserId(authentication)).stream().map(OrderResponse::from).toList();
     }
 
+    @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    List<OrderResponse> all() {
+        return orderRepository.findAll().stream().map(OrderResponse::from).toList();
+    }
+
     @GetMapping("/delegated-to-me")
     @PreAuthorize("hasRole('MEDIA_BUYER')")
     List<OrderResponse> delegatedToMe(Authentication authentication) {

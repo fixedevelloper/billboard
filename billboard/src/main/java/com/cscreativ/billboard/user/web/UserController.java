@@ -7,6 +7,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
@@ -25,6 +26,12 @@ class UserController {
         User user = userRepository.findByEmail(authentication.getName())
                 .orElseThrow(() -> new NoSuchElementException("User not found"));
         return UserResponse.from(user);
+    }
+
+    @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    List<UserResponse> all() {
+        return userRepository.findAll().stream().map(UserResponse::from).toList();
     }
 
     @PatchMapping("/{id}/kyc")

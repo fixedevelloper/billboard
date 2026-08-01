@@ -107,7 +107,10 @@
       "searchBillboards": "Rechercher des panneaux",
       "delegatedCampaigns": "Campagnes déléguées",
       "myInventory": "Mon inventaire",
-      "administration": "Administration"
+      "administration": "Administration",
+      "adminUsers": "Utilisateurs",
+      "adminBillboards": "Panneaux",
+      "adminOrders": "Commandes"
     }
   },
   "annonceur": {
@@ -164,17 +167,52 @@
     "imageUrl": "Image",
     "createBillboard": "Créer le panneau"
   },
-  "admin": {
-    "title": "Administration",
-    "kycValidationTitle": "Validation KYC",
-    "kycValidationDescription": "Approuvez ou rejetez le dossier d'un compte annonceur, agence média ou régisseur.",
-    "userId": "Id. utilisateur",
-    "status": "Statut",
+  "adminOverview": {
+    "title": "Vue d'ensemble",
+    "subtitle": "Pilotez les comptes, panneaux et commandes de la plateforme.",
+    "totalUsers": "Utilisateurs",
+    "pendingKyc": "KYC en attente",
+    "totalBillboards": "Panneaux",
+    "totalOrders": "Commandes",
+    "manageUsers": "Gérer les utilisateurs",
+    "manageBillboards": "Voir les panneaux",
+    "manageOrders": "Voir les commandes"
+  },
+  "adminUsers": {
+    "title": "Utilisateurs",
+    "subtitle": "Approuvez ou rejetez le dossier KYC d'un compte annonceur, agence média ou régisseur.",
+    "email": "Email",
+    "company": "Entreprise",
+    "role": "Rôle",
+    "kycStatus": "Statut KYC",
+    "action": "Action",
+    "update": "Mettre à jour",
+    "updated": "Statut KYC mis à jour.",
+    "noUsers": "Aucun utilisateur.",
     "statusVerified": "Vérifié",
     "statusRejected": "Rejeté",
-    "statusPending": "En attente",
-    "submit": "Mettre à jour",
-    "updated": "Statut KYC mis à jour."
+    "statusPending": "En attente"
+  },
+  "adminBillboards": {
+    "title": "Panneaux",
+    "subtitle": "Vue d'ensemble de l'inventaire publié par les régisseurs.",
+    "titleColumn": "Titre",
+    "type": "Type",
+    "location": "Localisation",
+    "status": "Statut",
+    "price": "Prix",
+    "owner": "Régisseur",
+    "noBillboards": "Aucun panneau."
+  },
+  "adminOrders": {
+    "title": "Commandes",
+    "subtitle": "Vue d'ensemble des commandes passées sur la plateforme.",
+    "id": "Commande",
+    "annonceur": "Annonceur",
+    "status": "Statut",
+    "total": "Total",
+    "items": "Panneaux",
+    "noOrders": "Aucune commande."
   },
   "wallet": {
     "title": "Solde du portefeuille",

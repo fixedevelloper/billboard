@@ -107,7 +107,10 @@
       "searchBillboards": "Search billboards",
       "delegatedCampaigns": "Delegated campaigns",
       "myInventory": "My inventory",
-      "administration": "Administration"
+      "administration": "Administration",
+      "adminUsers": "Users",
+      "adminBillboards": "Billboards",
+      "adminOrders": "Orders"
     }
   },
   "annonceur": {
@@ -164,17 +167,52 @@
     "imageUrl": "Image",
     "createBillboard": "Create billboard"
   },
-  "admin": {
-    "title": "Administration",
-    "kycValidationTitle": "KYC validation",
-    "kycValidationDescription": "Approve or reject an advertiser, media agency or billboard owner account.",
-    "userId": "User ID",
-    "status": "Status",
+  "adminOverview": {
+    "title": "Overview",
+    "subtitle": "Manage the platform's accounts, billboards and orders.",
+    "totalUsers": "Users",
+    "pendingKyc": "Pending KYC",
+    "totalBillboards": "Billboards",
+    "totalOrders": "Orders",
+    "manageUsers": "Manage users",
+    "manageBillboards": "View billboards",
+    "manageOrders": "View orders"
+  },
+  "adminUsers": {
+    "title": "Users",
+    "subtitle": "Approve or reject an advertiser, media agency or billboard owner account.",
+    "email": "Email",
+    "company": "Company",
+    "role": "Role",
+    "kycStatus": "KYC status",
+    "action": "Action",
+    "update": "Update",
+    "updated": "KYC status updated.",
+    "noUsers": "No users.",
     "statusVerified": "Verified",
     "statusRejected": "Rejected",
-    "statusPending": "Pending",
-    "submit": "Update",
-    "updated": "KYC status updated."
+    "statusPending": "Pending"
+  },
+  "adminBillboards": {
+    "title": "Billboards",
+    "subtitle": "Overview of the inventory published by billboard owners.",
+    "titleColumn": "Title",
+    "type": "Type",
+    "location": "Location",
+    "status": "Status",
+    "price": "Price",
+    "owner": "Owner",
+    "noBillboards": "No billboards."
+  },
+  "adminOrders": {
+    "title": "Orders",
+    "subtitle": "Overview of orders placed on the platform.",
+    "id": "Order",
+    "annonceur": "Advertiser",
+    "status": "Status",
+    "total": "Total",
+    "items": "Billboards",
+    "noOrders": "No orders."
   },
   "wallet": {
     "title": "Wallet balance",
