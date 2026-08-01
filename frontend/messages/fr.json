@@ -1,0 +1,183 @@
+{
+  "metadata": {
+    "title": "AdSpace Market - Plateforme B2B d'affichage publicitaire",
+    "description": "Marketplace B2B pour la réservation, le déploiement et la gestion financière d'espaces d'affichage OOH/DOOH."
+  },
+  "common": {
+    "appName": "AdSpace Market",
+    "loading": "Chargement…",
+    "close": "Fermer",
+    "perMonth": "/ mois",
+    "uploadImage": "Téléverser une image",
+    "changeImage": "Changer l'image",
+    "uploading": "Téléversement…",
+    "uploadError": "Échec du téléversement de l'image.",
+    "removeImage": "Retirer l'image"
+  },
+  "roles": {
+    "ANNONCEUR": "Annonceur",
+    "MEDIA_BUYER": "Agence média",
+    "REGISSEUR": "Régisseur",
+    "ADMIN": "Administrateur"
+  },
+  "billboardStatus": {
+    "AVAILABLE": "Disponible",
+    "RESERVED": "Réservé",
+    "MAINTENANCE": "Maintenance",
+    "INACTIVE": "Inactif"
+  },
+  "orderStatus": {
+    "DRAFT": "Brouillon",
+    "PENDING_PAYMENT": "En attente de paiement",
+    "DELEGATED": "Délégué",
+    "PAID": "Payé",
+    "CONFIRMED": "Confirmé",
+    "CANCELLED": "Annulé",
+    "EXPIRED": "Expiré"
+  },
+  "nav": {
+    "billboards": "Panneaux",
+    "mySpace": "Mon espace",
+    "login": "Connexion",
+    "register": "Créer un compte"
+  },
+  "footer": {
+    "tagline": "Plateforme B2B de gestion et réservation d'affichage OOH/DOOH."
+  },
+  "landing": {
+    "badge": "Marketplace B2B OOH / DOOH",
+    "title": "Digitalisez la réservation et le déploiement de vos campagnes d'affichage",
+    "subtitle": "AdSpace Market connecte annonceurs, agences médias et régisseurs sur une plateforme unique : disponibilité en temps réel, paiement sécurisé et preuve de pose terrain.",
+    "createAccount": "Créer un compte",
+    "exploreBillboards": "Explorer les panneaux",
+    "features": {
+      "map": {
+        "title": "Cartographie interactive",
+        "description": "Explorez les parcs de panneaux OOH et DOOH des régisseurs sur une carte multi-villes et multi-pays."
+      },
+      "booking": {
+        "title": "Réservation & délégation",
+        "description": "Composez votre campagne et payez directement, ou déléguez l'achat à votre agence média."
+      },
+      "payment": {
+        "title": "Paiement automatisé",
+        "description": "Séquestre des fonds et répartition automatique entre commissions et régisseurs."
+      },
+      "pop": {
+        "title": "Preuve d'affichage (P.O.P)",
+        "description": "Suivez le déploiement terrain grâce à des photos géolocalisées et horodatées."
+      }
+    }
+  },
+  "billboardsSearch": {
+    "title": "Panneaux disponibles",
+    "subtitle": "Recherchez par ville ou type d'affichage.",
+    "cityPlaceholder": "Ville (ex: Lomé)",
+    "allTypes": "Tous types",
+    "noResults": "Aucun panneau ne correspond à votre recherche.",
+    "mapLoading": "Chargement de la carte…"
+  },
+  "auth": {
+    "login": {
+      "title": "Connexion",
+      "email": "Email",
+      "password": "Mot de passe",
+      "submit": "Se connecter",
+      "noAccount": "Pas encore de compte ?",
+      "createAccount": "Créer un compte",
+      "genericError": "Connexion impossible."
+    },
+    "register": {
+      "title": "Créer un compte",
+      "iAm": "Je suis…",
+      "company": "Entreprise",
+      "email": "Email",
+      "phone": "Téléphone",
+      "password": "Mot de passe",
+      "submit": "Créer mon compte",
+      "hasAccount": "Déjà inscrit ?",
+      "login": "Se connecter",
+      "genericError": "Inscription impossible."
+    }
+  },
+  "dashboardShell": {
+    "logout": "Se déconnecter",
+    "nav": {
+      "annonceurOverview": "Vue d'ensemble",
+      "searchBillboards": "Rechercher des panneaux",
+      "delegatedCampaigns": "Campagnes déléguées",
+      "myInventory": "Mon inventaire",
+      "administration": "Administration"
+    }
+  },
+  "annonceur": {
+    "composeCampaign": "Composer ma campagne",
+    "filterByCity": "Filtrer par ville",
+    "add": "Ajouter",
+    "remove": "Retirer",
+    "cart": "Panier",
+    "cartCount": "{count} panneau(x) sélectionné(s)",
+    "total": "Total",
+    "createOrder": "Créer la commande",
+    "myOrders": "Mes commandes",
+    "orderSummary": "{count} panneau(x) · {amount} {currency}",
+    "validateOrder": "Valider la commande",
+    "pay": "Payer",
+    "delegate": "Déléguer",
+    "cancel": "Annuler",
+    "delegateModalTitle": "Déléguer à une agence média",
+    "mediaBuyerId": "Identifiant du media buyer",
+    "mediaBuyerIdPlaceholder": "UUID de l'agence",
+    "confirmDelegation": "Confirmer la délégation"
+  },
+  "mediaBuyer": {
+    "title": "Campagnes déléguées",
+    "subtitle": "Les annonceurs que vous représentez peuvent vous déléguer le paiement de leurs campagnes.",
+    "noOrders": "Aucune campagne déléguée pour le moment.",
+    "orderSummary": "{count} panneau(x) · {amount} {currency}",
+    "payOnBehalf": "Payer pour le compte de l'annonceur"
+  },
+  "regisseur": {
+    "myInventory": "Mon inventaire",
+    "addBillboard": "Ajouter un panneau",
+    "noBillboards": "Vous n'avez pas encore de panneau enregistré.",
+    "popTitle": "Preuve de pose (P.O.P)",
+    "popOrderId": "Id. commande",
+    "popBillboardId": "Id. panneau",
+    "popPhotoUrl": "Photo",
+    "popPhotoRequired": "Merci de téléverser une photo.",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "useCurrentLocation": "Utiliser ma position actuelle",
+    "savePop": "Enregistrer la preuve",
+    "popSaved": "Preuve de pose enregistrée.",
+    "geolocationError": "Géolocalisation impossible.",
+    "createModalTitle": "Ajouter un panneau",
+    "titleField": "Titre",
+    "type": "Type",
+    "format": "Format",
+    "city": "Ville",
+    "country": "Pays",
+    "address": "Adresse",
+    "monthlyPrice": "Prix mensuel",
+    "currency": "Devise",
+    "imageUrl": "Image",
+    "createBillboard": "Créer le panneau"
+  },
+  "admin": {
+    "title": "Administration",
+    "kycValidationTitle": "Validation KYC",
+    "kycValidationDescription": "Approuvez ou rejetez le dossier d'un compte annonceur, agence média ou régisseur.",
+    "userId": "Id. utilisateur",
+    "status": "Statut",
+    "statusVerified": "Vérifié",
+    "statusRejected": "Rejeté",
+    "statusPending": "En attente",
+    "submit": "Mettre à jour",
+    "updated": "Statut KYC mis à jour."
+  },
+  "wallet": {
+    "title": "Solde du portefeuille",
+    "description": "Fonds reçus des campagnes réglées, prêts à être retirés."
+  }
+}

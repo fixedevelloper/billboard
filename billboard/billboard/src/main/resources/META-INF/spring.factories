@@ -1,0 +1,2 @@
+org.springframework.boot.EnvironmentPostProcessor=\
+com.cscreativ.billboard.shared.config.DotenvEnvironmentPostProcessor

@@ -1,0 +1,183 @@
+{
+  "metadata": {
+    "title": "AdSpace Market - B2B Advertising Space Platform",
+    "description": "B2B marketplace for booking, deploying and managing the finances of OOH/DOOH advertising spaces."
+  },
+  "common": {
+    "appName": "AdSpace Market",
+    "loading": "Loading…",
+    "close": "Close",
+    "perMonth": "/ month",
+    "uploadImage": "Upload an image",
+    "changeImage": "Change image",
+    "uploading": "Uploading…",
+    "uploadError": "Failed to upload the image.",
+    "removeImage": "Remove image"
+  },
+  "roles": {
+    "ANNONCEUR": "Advertiser",
+    "MEDIA_BUYER": "Media agency",
+    "REGISSEUR": "Billboard owner",
+    "ADMIN": "Administrator"
+  },
+  "billboardStatus": {
+    "AVAILABLE": "Available",
+    "RESERVED": "Reserved",
+    "MAINTENANCE": "Maintenance",
+    "INACTIVE": "Inactive"
+  },
+  "orderStatus": {
+    "DRAFT": "Draft",
+    "PENDING_PAYMENT": "Awaiting payment",
+    "DELEGATED": "Delegated",
+    "PAID": "Paid",
+    "CONFIRMED": "Confirmed",
+    "CANCELLED": "Cancelled",
+    "EXPIRED": "Expired"
+  },
+  "nav": {
+    "billboards": "Billboards",
+    "mySpace": "My space",
+    "login": "Log in",
+    "register": "Create an account"
+  },
+  "footer": {
+    "tagline": "B2B platform for managing and booking OOH/DOOH advertising space."
+  },
+  "landing": {
+    "badge": "B2B OOH / DOOH Marketplace",
+    "title": "Digitize the booking and rollout of your advertising campaigns",
+    "subtitle": "AdSpace Market connects advertisers, media agencies and billboard owners on a single platform: real-time availability, secure payment and on-site proof of performance.",
+    "createAccount": "Create an account",
+    "exploreBillboards": "Explore billboards",
+    "features": {
+      "map": {
+        "title": "Interactive map",
+        "description": "Browse billboard owners' OOH and DOOH inventory on a multi-city, multi-country map."
+      },
+      "booking": {
+        "title": "Booking & delegation",
+        "description": "Build your campaign and pay directly, or delegate the purchase to your media agency."
+      },
+      "payment": {
+        "title": "Automated payment",
+        "description": "Funds escrow and automatic split between commissions and billboard owners."
+      },
+      "pop": {
+        "title": "Proof of performance (P.O.P)",
+        "description": "Track on-site rollout with geolocated, timestamped photos."
+      }
+    }
+  },
+  "billboardsSearch": {
+    "title": "Available billboards",
+    "subtitle": "Search by city or advertising type.",
+    "cityPlaceholder": "City (e.g. Lome)",
+    "allTypes": "All types",
+    "noResults": "No billboard matches your search.",
+    "mapLoading": "Loading map…"
+  },
+  "auth": {
+    "login": {
+      "title": "Log in",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Log in",
+      "noAccount": "Don't have an account yet?",
+      "createAccount": "Create an account",
+      "genericError": "Unable to log in."
+    },
+    "register": {
+      "title": "Create an account",
+      "iAm": "I am…",
+      "company": "Company",
+      "email": "Email",
+      "phone": "Phone",
+      "password": "Password",
+      "submit": "Create my account",
+      "hasAccount": "Already registered?",
+      "login": "Log in",
+      "genericError": "Unable to register."
+    }
+  },
+  "dashboardShell": {
+    "logout": "Log out",
+    "nav": {
+      "annonceurOverview": "Overview",
+      "searchBillboards": "Search billboards",
+      "delegatedCampaigns": "Delegated campaigns",
+      "myInventory": "My inventory",
+      "administration": "Administration"
+    }
+  },
+  "annonceur": {
+    "composeCampaign": "Compose my campaign",
+    "filterByCity": "Filter by city",
+    "add": "Add",
+    "remove": "Remove",
+    "cart": "Cart",
+    "cartCount": "{count} billboard(s) selected",
+    "total": "Total",
+    "createOrder": "Create order",
+    "myOrders": "My orders",
+    "orderSummary": "{count} billboard(s) · {amount} {currency}",
+    "validateOrder": "Confirm order",
+    "pay": "Pay",
+    "delegate": "Delegate",
+    "cancel": "Cancel",
+    "delegateModalTitle": "Delegate to a media agency",
+    "mediaBuyerId": "Media buyer ID",
+    "mediaBuyerIdPlaceholder": "Agency UUID",
+    "confirmDelegation": "Confirm delegation"
+  },
+  "mediaBuyer": {
+    "title": "Delegated campaigns",
+    "subtitle": "Advertisers you represent can delegate payment of their campaigns to you.",
+    "noOrders": "No delegated campaign yet.",
+    "orderSummary": "{count} billboard(s) · {amount} {currency}",
+    "payOnBehalf": "Pay on behalf of the advertiser"
+  },
+  "regisseur": {
+    "myInventory": "My inventory",
+    "addBillboard": "Add a billboard",
+    "noBillboards": "You haven't registered any billboard yet.",
+    "popTitle": "Proof of performance (P.O.P)",
+    "popOrderId": "Order ID",
+    "popBillboardId": "Billboard ID",
+    "popPhotoUrl": "Photo",
+    "popPhotoRequired": "Please upload a photo.",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
+    "useCurrentLocation": "Use my current location",
+    "savePop": "Save proof",
+    "popSaved": "Proof of performance saved.",
+    "geolocationError": "Unable to get your location.",
+    "createModalTitle": "Add a billboard",
+    "titleField": "Title",
+    "type": "Type",
+    "format": "Format",
+    "city": "City",
+    "country": "Country",
+    "address": "Address",
+    "monthlyPrice": "Monthly price",
+    "currency": "Currency",
+    "imageUrl": "Image",
+    "createBillboard": "Create billboard"
+  },
+  "admin": {
+    "title": "Administration",
+    "kycValidationTitle": "KYC validation",
+    "kycValidationDescription": "Approve or reject an advertiser, media agency or billboard owner account.",
+    "userId": "User ID",
+    "status": "Status",
+    "statusVerified": "Verified",
+    "statusRejected": "Rejected",
+    "statusPending": "Pending",
+    "submit": "Update",
+    "updated": "KYC status updated."
+  },
+  "wallet": {
+    "title": "Wallet balance",
+    "description": "Funds received from settled campaigns, ready to withdraw."
+  }
+}
