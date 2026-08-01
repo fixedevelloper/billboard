@@ -38,9 +38,9 @@ class PaymentController {
     }
 
     @PostMapping("/{orderId}/pay")
-    @PreAuthorize("hasAnyRole('ANNONCEUR', 'MEDIA_BUYER')")
-    PaymentResponse pay(@PathVariable UUID orderId, @RequestBody PayRequest request) {
-        return PaymentResponse.from(paymentService.pay(orderId, request.method()));
+    PaymentResponse pay(@PathVariable UUID orderId, @RequestBody PayRequest request, Authentication authentication) {
+        UUID requesterId = userFacade.getByEmail(authentication.getName()).id();
+        return PaymentResponse.from(paymentService.pay(orderId, request.method(), requesterId));
     }
 
     @GetMapping("/{orderId}")

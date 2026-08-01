@@ -72,7 +72,11 @@ public class PaymentService implements PaymentFacade {
     }
 
     /** Captures the payment, escrows the funds and immediately splits them to the regisseurs' wallets. */
-    public Payment pay(UUID orderId, PaymentMethod method) {
+    public Payment pay(UUID orderId, PaymentMethod method, UUID requesterId) {
+        if (!bookingFacade.resolvePayerId(orderId).equals(requesterId)) {
+            throw new IllegalStateException("Order %s does not belong to %s".formatted(orderId, requesterId));
+        }
+
         Payment payment = paymentRepository.findByOrderId(orderId)
                 .orElseThrow(() -> new NoSuchElementException("No payment initialized for order " + orderId));
 

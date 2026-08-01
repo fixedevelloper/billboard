@@ -5,58 +5,51 @@ import { useEffect, useState } from "react";
 import { Link, usePathname, useRouter } from "@/i18n/navigation";
 import { useAuth } from "@/lib/AuthProvider";
 import type { Role } from "@/lib/types";
+import { useCurrentUser } from "@/features/user/useCurrentUser";
 import { Button } from "@/components/ui/button";
 import { LocaleSwitcher } from "./LocaleSwitcher";
+import { NotificationsBell } from "./NotificationsBell";
 import {
   LayoutDashboard,
-  Search,
-  Briefcase,
-  Monitor,
-  ShieldCheck,
+  Building2,
+  ShoppingCart,
   Users,
-  MapPin,
-  ShoppingBag,
+  Megaphone,
+  Settings,
+  LogOut,
   Menu,
   X,
-  LogOut,
-  Building2,
-  Loader2,
-  Sparkles,
-  ChevronRight,
+  Building,
+  FileText,
 } from "lucide-react";
 
 interface NavItem {
   href: string;
   labelKey: string;
-  icon: React.ElementType;
+  icon: React.ComponentType<{ className?: string }>;
 }
 
-// Configuration des éléments de navigation avec icônes associées
 const NAV_ITEMS: Record<Role, NavItem[]> = {
   ANNONCEUR: [
     { href: "/annonceur", labelKey: "annonceurOverview", icon: LayoutDashboard },
-    { href: "/billboards", labelKey: "searchBillboards", icon: Search },
+    { href: "/billboards", labelKey: "searchBillboards", icon: Building2 },
+    { href: "/annonceur/orders", labelKey: "myOrders", icon: ShoppingCart },
   ],
   MEDIA_BUYER: [
-    { href: "/media-buyer", labelKey: "delegatedCampaigns", icon: Briefcase },
+    { href: "/media-buyer", labelKey: "mediaBuyerOverview", icon: LayoutDashboard },
+    { href: "/billboards", labelKey: "searchBillboards", icon: Building2 },
+    { href: "/media-buyer/orders", labelKey: "myOrders", icon: ShoppingCart },
   ],
   REGISSEUR: [
-    { href: "/regisseur", labelKey: "myInventory", icon: Monitor },
+    { href: "/regisseur", labelKey: "myInventory", icon: Building },
+    { href: "/regisseur/orders", labelKey: "myOrders", icon: FileText },
   ],
   ADMIN: [
-    { href: "/admin", labelKey: "administration", icon: ShieldCheck },
+    { href: "/admin", labelKey: "administration", icon: Settings },
     { href: "/admin/users", labelKey: "adminUsers", icon: Users },
-    { href: "/admin/billboards", labelKey: "adminBillboards", icon: MapPin },
-    { href: "/admin/orders", labelKey: "adminOrders", icon: ShoppingBag },
+    { href: "/admin/billboards", labelKey: "adminBillboards", icon: Building2 },
+    { href: "/admin/orders", labelKey: "adminOrders", icon: ShoppingCart },
   ],
-};
-
-// Couleurs de badges par rôle
-const ROLE_BADGE_STYLES: Record<Role, string> = {
-  ANNONCEUR: "bg-blue-50 text-blue-700 border-blue-200 dark:bg-blue-950/50 dark:text-blue-400 dark:border-blue-900",
-  MEDIA_BUYER: "bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-indigo-950/50 dark:text-indigo-400 dark:border-indigo-900",
-  REGISSEUR: "bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/50 dark:text-emerald-400 dark:border-emerald-900",
-  ADMIN: "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-950/50 dark:text-amber-400 dark:border-amber-900",
 };
 
 export function DashboardShell({
@@ -67,175 +60,189 @@ export function DashboardShell({
   children: React.ReactNode;
 }) {
   const { user, loading, logout } = useAuth();
+  const { profile } = useCurrentUser();
   const router = useRouter();
   const pathname = usePathname();
   const t = useTranslations("dashboardShell");
   const tCommon = useTranslations("common");
   const tRoles = useTranslations("roles");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  // État du menu mobile (sidebar slide-over)
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // Fermer le menu mobile lors du changement de route
-  useEffect(() => {
-    setMobileMenuOpen(false);
-  }, [pathname]);
-
-  // Contrôle des accès
   useEffect(() => {
     if (loading) return;
-    if (!user || user.role !== role) {
+    if (!user) {
+      router.replace("/login");
+      return;
+    }
+    if (user.role !== role) {
       router.replace("/login");
     }
   }, [loading, user, role, router]);
 
-  // Écran de chargement élégant
   if (loading || !user || user.role !== role) {
     return (
-        <div className="flex h-screen w-full flex-col items-center justify-center gap-3 bg-zinc-50 dark:bg-zinc-950">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-600 text-white shadow-lg shadow-blue-500/30">
-            <Loader2 className="h-6 w-6 animate-spin" />
+        <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-zinc-50 to-zinc-100 dark:from-zinc-950 dark:to-zinc-900">
+          <div className="flex flex-col items-center gap-4">
+            <div className="h-12 w-12 animate-spin rounded-full border-4 border-blue-600 border-t-transparent" />
+            <p className="text-sm font-medium text-zinc-600 dark:text-zinc-400">{tCommon("loading")}</p>
           </div>
-          <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400 animate-pulse">
-            {tCommon("loading")}
-          </p>
         </div>
     );
   }
 
-  const navItems = NAV_ITEMS[role] || [];
-  const companyInitials = user.companyName ? user.companyName.substring(0, 2).toUpperCase() : "CS";
+  const navItems = NAV_ITEMS[role];
 
   return (
-      <div className="flex min-h-screen w-full bg-zinc-100/60 dark:bg-zinc-950">
-
-        {/* 1. OVERLAY MOBILE POUR FERMER LE MENU */}
-        {mobileMenuOpen && (
+      <div className="flex min-h-screen bg-gradient-to-br from-zinc-50 via-white to-zinc-100 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+        {/* Mobile sidebar overlay */}
+        {sidebarOpen && (
             <div
-                className="fixed inset-0 z-40 bg-zinc-900/60 backdrop-blur-sm lg:hidden transition-opacity"
-                onClick={() => setMobileMenuOpen(false)}
+                className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm lg:hidden"
+                onClick={() => setSidebarOpen(false)}
             />
         )}
 
-        {/* 2. SIDEBAR (DESKTOP ET MOBILE SLIDE-OVER) */}
+        {/* Sidebar */}
         <aside
-            className={`fixed inset-y-0 left-0 z-50 flex w-72 flex-col border-r border-zinc-200/80 bg-white shadow-xl transition-transform duration-300 ease-in-out dark:border-zinc-800/80 dark:bg-zinc-900 lg:static lg:w-64 lg:shadow-none lg:translate-x-0 ${
-                mobileMenuOpen ? "translate-x-0" : "-translate-x-full"
+            className={`fixed inset-y-0 left-0 z-50 w-72 transform border-r border-zinc-200 bg-white/80 backdrop-blur-xl transition-transform duration-300 ease-in-out dark:border-zinc-800 dark:bg-zinc-900/80 lg:static lg:z-auto lg:block lg:translate-x-0 ${
+                sidebarOpen ? "translate-x-0" : "-translate-x-full"
             }`}
         >
-          {/* En-tête Sidebar avec Logo */}
-          <div className="flex h-16 items-center justify-between px-6 border-b border-zinc-100 dark:border-zinc-800/60">
-            <Link href="/" className="flex items-center gap-2.5 font-extrabold text-zinc-900 dark:text-zinc-50 text-lg tracking-tight">
-              <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-blue-600 text-white shadow-md shadow-blue-500/20">
-                <Sparkles className="h-4 w-4" />
+          <div className="flex h-full flex-col">
+            {/* Logo */}
+            <div className="flex h-16 items-center justify-between border-b border-zinc-200 px-6 dark:border-zinc-800">
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-blue-600 to-blue-700 shadow-lg">
+                  <Megaphone className="h-5 w-5 text-white" />
+                </div>
+                <span className="text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+                {tCommon("appName")}
+              </span>
               </div>
-              <span>{tCommon("appName")}</span>
-            </Link>
-            <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                className="rounded-lg p-1 text-zinc-400 hover:bg-zinc-100 hover:text-zinc-600 dark:hover:bg-zinc-800 lg:hidden"
-            >
-              <X className="h-5 w-5" />
-            </button>
-          </div>
+              <button
+                  onClick={() => setSidebarOpen(false)}
+                  className="rounded-lg p-1 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-200 lg:hidden"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
 
-          {/* Section Navigation */}
-          <div className="flex-1 overflow-y-auto px-4 py-6 space-y-1">
-            <p className="px-3 text-xs font-semibold uppercase tracking-wider text-zinc-400 dark:text-zinc-500 mb-3">
-              Menu principal
-            </p>
-            <nav className="flex flex-col gap-1.5">
+            {/* Navigation */}
+            <nav className="flex-1 space-y-1 px-3 py-6">
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const isActive = pathname === item.href;
-
                 return (
                     <Link
                         key={item.href}
                         href={item.href}
-                        className={`group flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm font-medium transition-all ${
+                        className={`group flex items-center gap-3 rounded-xl px-4 py-3 text-sm font-medium transition-all duration-200 ${
                             isActive
-                                ? "bg-blue-600 text-white shadow-md shadow-blue-600/20"
-                                : "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-zinc-100"
+                                ? "bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-md shadow-blue-500/25"
+                                : "text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-100"
                         }`}
                     >
-                      <div className="flex items-center gap-3">
-                        <Icon className={`h-4 w-4 transition-transform group-hover:scale-110 ${isActive ? "text-white" : "text-zinc-400 dark:text-zinc-500"}`} />
-                        <span>{t(`nav.${item.labelKey}`)}</span>
-                      </div>
-                      {isActive && <ChevronRight className="h-4 w-4 text-white/80" />}
+                      <Icon
+                          className={`h-5 w-5 transition-transform group-hover:scale-110 ${
+                              isActive ? "text-white/90" : "text-zinc-400 group-hover:text-zinc-600 dark:text-zinc-500"
+                          }`}
+                      />
+                      {t(`nav.${item.labelKey}`)}
                     </Link>
                 );
               })}
             </nav>
-          </div>
 
-          {/* Pied de Sidebar (Informations Utilisateur) */}
-          <div className="p-4 border-t border-zinc-100 dark:border-zinc-800/60 bg-zinc-50/50 dark:bg-zinc-900/50">
-            <div className="flex items-center gap-3 p-2 rounded-xl bg-white dark:bg-zinc-800 border border-zinc-200/60 dark:border-zinc-700/50 shadow-sm">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-zinc-900 text-xs font-bold text-white dark:bg-zinc-100 dark:text-zinc-900">
-                {companyInitials}
-              </div>
-              <div className="flex flex-col min-w-0 flex-1">
-                <p className="truncate text-xs font-semibold text-zinc-900 dark:text-zinc-100">
-                  {user.companyName}
-                </p>
-                <span className={`mt-0.5 inline-self-start text-[10px] font-semibold border rounded-full px-2 py-0.2 ${ROLE_BADGE_STYLES[user.role]}`}>
-                {tRoles(user.role)}
-              </span>
+            {/* User info */}
+            <div className="border-t border-zinc-200 p-4 dark:border-zinc-800">
+              <div className="flex items-center gap-3 rounded-xl bg-zinc-50 p-3 dark:bg-zinc-800/50">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-md">
+                <span className="text-sm font-bold">
+                  {user.companyName?.charAt(0).toUpperCase() || "U"}
+                </span>
+                </div>
+                <div className="flex-1 overflow-hidden">
+                  <p className="truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                    {user.companyName}
+                  </p>
+                  <p className="truncate text-xs text-zinc-500 dark:text-zinc-400">
+                    {tRoles(user.role)}
+                  </p>
+                </div>
               </div>
             </div>
           </div>
         </aside>
 
-        {/* 3. CONTENU PRINCIPAL (HEADER + MAIN) */}
-        <div className="flex flex-1 flex-col min-w-0">
-
-          {/* Header Supérieur */}
-          <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-zinc-200/80 bg-white/80 px-4 sm:px-6 backdrop-blur-md dark:border-zinc-800/80 dark:bg-zinc-900/80">
-
-            {/* Bouton Burger Mobile + Titre contextuel */}
+        {/* Main content */}
+        <div className="flex flex-1 flex-col lg:ml-0">
+          {/* Header */}
+          <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-zinc-200 bg-white/80 px-4 backdrop-blur-xl dark:border-zinc-800 dark:bg-zinc-900/80 sm:px-6">
             <div className="flex items-center gap-3">
               <button
-                  type="button"
-                  onClick={() => setMobileMenuOpen(true)}
-                  className="rounded-xl border border-zinc-200 p-2 text-zinc-600 hover:bg-zinc-100 dark:border-zinc-800 dark:text-zinc-300 dark:hover:bg-zinc-800 lg:hidden"
-                  aria-label="Ouvrir le menu"
+                  onClick={() => setSidebarOpen(true)}
+                  className="rounded-lg p-2 text-zinc-500 hover:bg-zinc-100 hover:text-zinc-700 dark:text-zinc-400 dark:hover:bg-zinc-800 dark:hover:text-zinc-200 lg:hidden"
               >
                 <Menu className="h-5 w-5" />
               </button>
-
-              <div className="hidden sm:flex items-center gap-2 text-sm text-zinc-500">
-                <Building2 className="h-4 w-4 text-zinc-400" />
-                <span className="font-semibold text-zinc-900 dark:text-zinc-100">{user.companyName}</span>
+              <div>
+                <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                  {user.companyName}
+                </p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  {tRoles(user.role)}
+                </p>
               </div>
             </div>
 
-            {/* Actions Droite (Sélecteur de langue + Déconnexion) */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2">
+              <NotificationsBell />
               <LocaleSwitcher />
-
               <Button
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
                   onClick={logout}
-                  className="h-9 gap-2 text-xs font-medium text-zinc-700 hover:text-red-600 hover:bg-red-50 hover:border-red-200 dark:text-zinc-300 dark:hover:bg-red-950/30 dark:hover:text-red-400 dark:hover:border-red-900 transition-colors"
+                  className="hidden text-zinc-600 hover:bg-red-50 hover:text-red-600 dark:text-zinc-400 dark:hover:bg-red-900/20 dark:hover:text-red-400 sm:flex"
               >
-                <LogOut className="h-3.5 w-3.5" />
-                <span className="hidden sm:inline">{t("logout")}</span>
+                <LogOut className="mr-2 h-4 w-4" />
+                {t("logout")}
+              </Button>
+              <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={logout}
+                  className="text-zinc-600 hover:bg-red-50 hover:text-red-600 dark:text-zinc-400 dark:hover:bg-red-900/20 dark:hover:text-red-400 sm:hidden"
+              >
+                <LogOut className="h-4 w-4" />
               </Button>
             </div>
           </header>
 
-          {/* Zone de contenu principale avec défilement fluide */}
-          <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
-            <div className="mx-auto max-w-7xl">
-              {children}
-            </div>
-          </main>
-        </div>
+          {/* KYC Status Banner */}
+          {profile && profile.kycStatus !== "VERIFIED" && (
+              <div
+                  className={`flex items-center gap-2 px-6 py-3 text-sm ${
+                      profile.kycStatus === "REJECTED"
+                          ? "bg-gradient-to-r from-red-50 to-red-100 text-red-800 dark:from-red-950/40 dark:to-red-900/20 dark:text-red-300"
+                          : "bg-gradient-to-r from-amber-50 to-amber-100 text-amber-800 dark:from-amber-950/40 dark:to-amber-900/20 dark:text-amber-300"
+                  }`}
+              >
+                <svg className="h-5 w-5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                      fillRule="evenodd"
+                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                      clipRule="evenodd"
+                  />
+                </svg>
+                <span className="font-medium">
+              {profile.kycStatus === "REJECTED" ? t("kycRejected") : t("kycPending")}
+            </span>
+              </div>
+          )}
 
+          {/* Page content */}
+          <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">{children}</main>
+        </div>
       </div>
   );
 }

@@ -14,7 +14,9 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.UUID;
 
-/** Cart / checkout / delegation workflow for annonceurs and media buyers. */
+/** Cart / checkout / delegation workflow. Placing, checking out and cancelling an order
+ * is open to any authenticated user regardless of role; delegation stays annonceur-only
+ * since it is specifically about handing off payment to a media buyer. */
 @RestController
 @RequestMapping("/api/bookings")
 class BookingController {
@@ -30,7 +32,6 @@ class BookingController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('ANNONCEUR')")
     ResponseEntity<OrderResponse> create(@Valid @RequestBody CreateOrderRequest request, Authentication authentication) {
         UUID annonceurId = currentUserId(authentication);
         List<BookingService.CartLine> lines = request.items().stream()
@@ -42,7 +43,6 @@ class BookingController {
     }
 
     @PostMapping("/{id}/checkout")
-    @PreAuthorize("hasAnyRole('ANNONCEUR', 'MEDIA_BUYER')")
     OrderResponse checkout(@PathVariable UUID id, Authentication authentication) {
         return OrderResponse.from(bookingService.checkout(id, currentUserId(authentication)));
     }
@@ -55,7 +55,6 @@ class BookingController {
     }
 
     @PostMapping("/{id}/cancel")
-    @PreAuthorize("hasRole('ANNONCEUR')")
     ResponseEntity<Void> cancel(@PathVariable UUID id, Authentication authentication) {
         bookingService.cancel(id, currentUserId(authentication));
         return ResponseEntity.noContent().build();
@@ -69,7 +68,6 @@ class BookingController {
     }
 
     @GetMapping("/mine")
-    @PreAuthorize("hasRole('ANNONCEUR')")
     List<OrderResponse> mine(Authentication authentication) {
         return bookingService.findByAnnonceur(currentUserId(authentication)).stream().map(OrderResponse::from).toList();
     }

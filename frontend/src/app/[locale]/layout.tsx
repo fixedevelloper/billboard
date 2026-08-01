@@ -6,7 +6,6 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import "../globals.css";
 import { AuthProvider } from "@/lib/AuthProvider";
-import { CartProvider } from "@/features/booking/CartProvider";
 import { routing } from "@/i18n/routing";
 
 const geistSans = Geist({
@@ -56,9 +55,7 @@ export default async function RootLayout({
     >
       <body className="min-h-full flex flex-col font-sans antialiased">
         <NextIntlClientProvider>
-          <AuthProvider>
-            <CartProvider>{children}</CartProvider>
-          </AuthProvider>
+          <AuthProvider>{children}</AuthProvider>
         </NextIntlClientProvider>
       </body>
     </html>

@@ -37,6 +37,7 @@
   },
   "nav": {
     "billboards": "Billboards",
+    "myOrders": "My orders",
     "mySpace": "My space",
     "login": "Log in",
     "register": "Create an account"
@@ -75,7 +76,14 @@
     "cityPlaceholder": "City (e.g. Lome)",
     "allTypes": "All types",
     "noResults": "No billboard matches your search.",
-    "mapLoading": "Loading map…"
+    "mapLoading": "Loading map…",
+    "loginRequiredTitle": "Log in to explore billboards",
+    "loginRequiredDescription": "Searching OOH/DOOH billboards is reserved for logged-in users.",
+    "cartCount": "{count} billboard(s) selected",
+    "cartTotal": "Total",
+    "addToCart": "Add to cart",
+    "removeFromCart": "Remove",
+    "goToCheckout": "Go to checkout"
   },
   "auth": {
     "login": {
@@ -102,10 +110,17 @@
   },
   "dashboardShell": {
     "logout": "Log out",
+    "notifications": "Notifications",
+    "notificationsLoading": "Loading notifications…",
+    "noNotifications": "No notifications yet.",
+    "notificationFailed": "Delivery failed",
+    "kycPending": "Your account is pending KYC verification. Some actions may be limited until it's approved.",
+    "kycRejected": "Your KYC file was rejected. Contact support for more information.",
     "nav": {
       "annonceurOverview": "Overview",
+      "mediaBuyerOverview": "Overview",
       "searchBillboards": "Search billboards",
-      "delegatedCampaigns": "Delegated campaigns",
+      "myOrders": "My orders",
       "myInventory": "My inventory",
       "administration": "Administration",
       "adminUsers": "Users",
@@ -114,28 +129,65 @@
     }
   },
   "annonceur": {
-    "composeCampaign": "Compose my campaign",
-    "filterByCity": "Filter by city",
-    "add": "Add",
+    "title": "My advertiser space",
+    "subtitle": "Overview of your account and campaigns.",
+    "totalOrders": "Orders",
+    "pendingPayment": "Pending payment",
+    "totalAmount": "Total amount",
+    "browseBillboards": "Browse billboards",
+    "viewOrders": "View my orders"
+  },
+  "checkout": {
+    "title": "Complete your order",
+    "subtitle": "Review each billboard's display period before confirming.",
+    "loginRequiredTitle": "Log in to complete your order",
+    "loginRequiredDescription": "Placing an order is reserved for logged-in users.",
+    "emptyTitle": "Your cart is empty",
+    "emptyDescription": "Add billboards from the search page before checking out.",
+    "browseBillboards": "Browse billboards",
+    "startDate": "Start date",
+    "endDate": "End date",
+    "invalidPeriod": "The end date must be after the start date.",
     "remove": "Remove",
-    "cart": "Cart",
-    "cartCount": "{count} billboard(s) selected",
     "total": "Total",
-    "createOrder": "Create order",
-    "myOrders": "My orders",
+    "next": "Next",
+    "back": "Back",
+    "summaryTitle": "Summary",
+    "confirm": "Confirm order",
+    "confirmationBadge": "Order created",
+    "confirmationTitle": "Your order is awaiting payment",
+    "confirmationDescription": "Find it under \"My orders\" to pay or delegate it.",
+    "viewOrders": "View my orders",
+    "steps": {
+      "billboards": "Billboards & dates",
+      "summary": "Summary",
+      "confirmation": "Confirmation"
+    }
+  },
+  "orders": {
+    "title": "My orders",
+    "subtitle": "Track, pay or delegate the orders you have placed.",
+    "loginRequired": "Log in to see your orders.",
+    "login": "Log in",
+    "noOrders": "You haven't placed any order yet.",
     "orderSummary": "{count} billboard(s) · {amount} {currency}",
-    "validateOrder": "Confirm order",
+    "cancel": "Cancel",
     "pay": "Pay",
     "delegate": "Delegate",
-    "cancel": "Cancel",
     "delegateModalTitle": "Delegate to a media agency",
     "mediaBuyerId": "Media buyer ID",
     "mediaBuyerIdPlaceholder": "Agency UUID",
     "confirmDelegation": "Confirm delegation"
   },
   "mediaBuyer": {
-    "title": "Delegated campaigns",
-    "subtitle": "Advertisers you represent can delegate payment of their campaigns to you.",
+    "title": "My media agency space",
+    "subtitle": "Overview of your account and delegated campaigns.",
+    "totalDelegated": "Delegated campaigns",
+    "pendingPayment": "Pending payment",
+    "browseBillboards": "Browse billboards",
+    "viewOrders": "View my orders",
+    "delegatedSectionTitle": "Delegated campaigns to pay",
+    "delegatedSectionDescription": "Advertisers you represent can delegate payment of their campaigns to you.",
     "noOrders": "No delegated campaign yet.",
     "orderSummary": "{count} billboard(s) · {amount} {currency}",
     "payOnBehalf": "Pay on behalf of the advertiser"
@@ -217,5 +269,14 @@
   "wallet": {
     "title": "Wallet balance",
     "description": "Funds received from settled campaigns, ready to withdraw."
+  },
+  "profile": {
+    "email": "Email",
+    "phone": "Phone",
+    "kycStatus": {
+      "VERIFIED": "KYC verified",
+      "PENDING": "KYC pending",
+      "REJECTED": "KYC rejected"
+    }
   }
 }

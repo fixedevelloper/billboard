@@ -3,7 +3,6 @@
 import { useTranslations } from "next-intl";
 import { useState, useMemo } from "react";
 import { DashboardShell } from "@/components/layout/DashboardShell";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -23,7 +22,6 @@ import {
   User,
   Sparkles,
   MapPinOff,
-  DollarSign,
 } from "lucide-react";
 
 // Configuration visuelle des statuts
@@ -52,7 +50,6 @@ const STATUS_CONFIG: Record<
 export default function AdminBillboardsPage() {
   const t = useTranslations("adminBillboards");
   const tStatus = useTranslations("billboardStatus");
-  const tCommon = useTranslations("common");
   const { billboards, loading } = useAdminBillboards();
 
   // Filtres locaux
@@ -72,12 +69,14 @@ export default function AdminBillboardsPage() {
 
   // Filtrage combiné des panneaux
   const filteredBillboards = useMemo(() => {
+    const query = searchQuery.toLowerCase().trim();
     return billboards.filter((b) => {
       const matchesSearch =
-          b.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          b.city.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          b.country.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          b.ownerId.toLowerCase().includes(searchQuery.toLowerCase());
+          !query ||
+          b.title.toLowerCase().includes(query) ||
+          b.city.toLowerCase().includes(query) ||
+          b.country.toLowerCase().includes(query) ||
+          b.ownerId.toLowerCase().includes(query);
 
       const matchesStatus = statusFilter === "ALL" || b.status === statusFilter;
       const matchesType = typeFilter === "ALL" || b.type === typeFilter;
@@ -152,6 +151,7 @@ export default function AdminBillboardsPage() {
                   <button
                       type="button"
                       onClick={() => setSearchQuery("")}
+                      aria-label="Effacer la recherche"
                       className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-200"
                   >
                     <X className="h-3.5 w-3.5" />
@@ -245,12 +245,12 @@ export default function AdminBillboardsPage() {
                   <table className="w-full text-left text-sm">
                     <thead className="border-b border-zinc-200 bg-zinc-50/80 text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:border-zinc-800 dark:bg-zinc-950/80 dark:text-zinc-400">
                     <tr>
-                      <th className="px-6 py-4">{t("titleColumn")}</th>
-                      <th className="px-6 py-4">{t("type")}</th>
-                      <th className="px-6 py-4">{t("location")}</th>
-                      <th className="px-6 py-4">{t("status")}</th>
-                      <th className="px-6 py-4">{t("price")}</th>
-                      <th className="px-6 py-4">{t("owner")}</th>
+                      <th scope="col" className="px-6 py-4">{t("titleColumn")}</th>
+                      <th scope="col" className="px-6 py-4">{t("type")}</th>
+                      <th scope="col" className="px-6 py-4">{t("location")}</th>
+                      <th scope="col" className="px-6 py-4">{t("status")}</th>
+                      <th scope="col" className="px-6 py-4">{t("price")}</th>
+                      <th scope="col" className="px-6 py-4">{t("owner")}</th>
                     </tr>
                     </thead>
                     <tbody className="divide-y divide-zinc-200/80 dark:divide-zinc-800/80">

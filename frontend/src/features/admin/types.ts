@@ -1,6 +1,6 @@
-import type { Role } from "@/lib/types";
+import type { KycStatus, Role } from "@/lib/types";
 
-export type KycStatus = "PENDING" | "VERIFIED" | "REJECTED";
+export type { KycStatus };
 
 export interface AdminUser {
   id: string;

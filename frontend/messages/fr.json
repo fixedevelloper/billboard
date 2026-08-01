@@ -37,6 +37,7 @@
   },
   "nav": {
     "billboards": "Panneaux",
+    "myOrders": "Mes commandes",
     "mySpace": "Mon espace",
     "login": "Connexion",
     "register": "Créer un compte"
@@ -75,7 +76,14 @@
     "cityPlaceholder": "Ville (ex: Lomé)",
     "allTypes": "Tous types",
     "noResults": "Aucun panneau ne correspond à votre recherche.",
-    "mapLoading": "Chargement de la carte…"
+    "mapLoading": "Chargement de la carte…",
+    "loginRequiredTitle": "Connectez-vous pour explorer les panneaux",
+    "loginRequiredDescription": "La recherche de panneaux OOH/DOOH est réservée aux utilisateurs connectés.",
+    "cartCount": "{count} panneau(x) sélectionné(s)",
+    "cartTotal": "Total",
+    "addToCart": "Ajouter au panier",
+    "removeFromCart": "Retirer",
+    "goToCheckout": "Passer à la caisse"
   },
   "auth": {
     "login": {
@@ -102,10 +110,17 @@
   },
   "dashboardShell": {
     "logout": "Se déconnecter",
+    "notifications": "Notifications",
+    "notificationsLoading": "Chargement des notifications…",
+    "noNotifications": "Aucune notification pour le moment.",
+    "notificationFailed": "Échec d'envoi",
+    "kycPending": "Votre compte est en attente de vérification KYC. Certaines actions peuvent être limitées tant qu'il n'est pas validé.",
+    "kycRejected": "Votre dossier KYC a été rejeté. Contactez le support pour plus d'informations.",
     "nav": {
       "annonceurOverview": "Vue d'ensemble",
+      "mediaBuyerOverview": "Vue d'ensemble",
       "searchBillboards": "Rechercher des panneaux",
-      "delegatedCampaigns": "Campagnes déléguées",
+      "myOrders": "Mes commandes",
       "myInventory": "Mon inventaire",
       "administration": "Administration",
       "adminUsers": "Utilisateurs",
@@ -114,28 +129,65 @@
     }
   },
   "annonceur": {
-    "composeCampaign": "Composer ma campagne",
-    "filterByCity": "Filtrer par ville",
-    "add": "Ajouter",
+    "title": "Mon espace annonceur",
+    "subtitle": "Vue d'ensemble de votre compte et de vos campagnes.",
+    "totalOrders": "Commandes",
+    "pendingPayment": "En attente de paiement",
+    "totalAmount": "Montant total",
+    "browseBillboards": "Explorer les panneaux",
+    "viewOrders": "Voir mes commandes"
+  },
+  "checkout": {
+    "title": "Finaliser la commande",
+    "subtitle": "Vérifiez les dates de diffusion de chaque panneau avant de confirmer.",
+    "loginRequiredTitle": "Connectez-vous pour finaliser votre commande",
+    "loginRequiredDescription": "La création de commande est réservée aux utilisateurs connectés.",
+    "emptyTitle": "Votre panier est vide",
+    "emptyDescription": "Ajoutez des panneaux depuis la recherche avant de passer à la caisse.",
+    "browseBillboards": "Explorer les panneaux",
+    "startDate": "Date de début",
+    "endDate": "Date de fin",
+    "invalidPeriod": "La date de fin doit être postérieure à la date de début.",
     "remove": "Retirer",
-    "cart": "Panier",
-    "cartCount": "{count} panneau(x) sélectionné(s)",
     "total": "Total",
-    "createOrder": "Créer la commande",
-    "myOrders": "Mes commandes",
+    "next": "Suivant",
+    "back": "Retour",
+    "summaryTitle": "Récapitulatif",
+    "confirm": "Confirmer la commande",
+    "confirmationBadge": "Commande créée",
+    "confirmationTitle": "Votre commande est en attente de paiement",
+    "confirmationDescription": "Retrouvez-la dans « Mes commandes » pour la régler ou la déléguer.",
+    "viewOrders": "Voir mes commandes",
+    "steps": {
+      "billboards": "Panneaux & dates",
+      "summary": "Récapitulatif",
+      "confirmation": "Confirmation"
+    }
+  },
+  "orders": {
+    "title": "Mes commandes",
+    "subtitle": "Suivez, payez ou déléguez les commandes que vous avez passées.",
+    "loginRequired": "Connectez-vous pour voir vos commandes.",
+    "login": "Se connecter",
+    "noOrders": "Vous n'avez pas encore passé de commande.",
     "orderSummary": "{count} panneau(x) · {amount} {currency}",
-    "validateOrder": "Valider la commande",
+    "cancel": "Annuler",
     "pay": "Payer",
     "delegate": "Déléguer",
-    "cancel": "Annuler",
     "delegateModalTitle": "Déléguer à une agence média",
     "mediaBuyerId": "Identifiant du media buyer",
     "mediaBuyerIdPlaceholder": "UUID de l'agence",
     "confirmDelegation": "Confirmer la délégation"
   },
   "mediaBuyer": {
-    "title": "Campagnes déléguées",
-    "subtitle": "Les annonceurs que vous représentez peuvent vous déléguer le paiement de leurs campagnes.",
+    "title": "Mon espace agence média",
+    "subtitle": "Vue d'ensemble de votre compte et des campagnes déléguées.",
+    "totalDelegated": "Campagnes déléguées",
+    "pendingPayment": "En attente de paiement",
+    "browseBillboards": "Explorer les panneaux",
+    "viewOrders": "Voir mes commandes",
+    "delegatedSectionTitle": "Campagnes déléguées à payer",
+    "delegatedSectionDescription": "Les annonceurs que vous représentez peuvent vous déléguer le paiement de leurs campagnes.",
     "noOrders": "Aucune campagne déléguée pour le moment.",
     "orderSummary": "{count} panneau(x) · {amount} {currency}",
     "payOnBehalf": "Payer pour le compte de l'annonceur"
@@ -217,5 +269,14 @@
   "wallet": {
     "title": "Solde du portefeuille",
     "description": "Fonds reçus des campagnes réglées, prêts à être retirés."
+  },
+  "profile": {
+    "email": "Email",
+    "phone": "Téléphone",
+    "kycStatus": {
+      "VERIFIED": "KYC vérifié",
+      "PENDING": "KYC en attente",
+      "REJECTED": "KYC rejeté"
+    }
   }
 }

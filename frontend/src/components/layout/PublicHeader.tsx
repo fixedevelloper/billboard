@@ -23,9 +23,14 @@ export function PublicHeader() {
             {t("billboards")}
           </Link>
           {user ? (
-            <Link href={dashboardPathForRole(user.role)}>
-              <Button size="sm">{t("mySpace")}</Button>
-            </Link>
+            <>
+              <Link href="/orders" className="hover:text-zinc-900 dark:hover:text-zinc-50">
+                {t("myOrders")}
+              </Link>
+              <Link href={dashboardPathForRole(user.role)}>
+                <Button size="sm">{t("mySpace")}</Button>
+              </Link>
+            </>
           ) : (
             <>
               <Link href="/login" className="hover:text-zinc-900 dark:hover:text-zinc-50">
