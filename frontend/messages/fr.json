@@ -12,7 +12,8 @@
     "changeImage": "Changer l'image",
     "uploading": "Téléversement…",
     "uploadError": "Échec du téléversement de l'image.",
-    "removeImage": "Retirer l'image"
+    "removeImage": "Retirer l'image",
+    "viewOnMap": "Voir sur la map"
   },
   "roles": {
     "ANNONCEUR": "Annonceur",
@@ -119,6 +120,7 @@
     "nav": {
       "annonceurOverview": "Vue d'ensemble",
       "mediaBuyerOverview": "Vue d'ensemble",
+      "regisseurOverview": "Vue d'ensemble",
       "searchBillboards": "Rechercher des panneaux",
       "myOrders": "Mes commandes",
       "myInventory": "Mon inventaire",
@@ -193,7 +195,16 @@
     "payOnBehalf": "Payer pour le compte de l'annonceur"
   },
   "regisseur": {
-    "myInventory": "Mon inventaire",
+    "title": "Mon espace régisseur",
+    "subtitle": "Vue d'ensemble de votre compte et de votre parc de panneaux.",
+    "totalBillboards": "Panneaux",
+    "available": "Disponibles",
+    "reserved": "Réservés",
+    "viewInventory": "Voir mon inventaire",
+    "addBillboard": "Ajouter un panneau"
+  },
+  "regisseurBillboards": {
+    "title": "Mon inventaire",
     "addBillboard": "Ajouter un panneau",
     "noBillboards": "Vous n'avez pas encore de panneau enregistré.",
     "popTitle": "Preuve de pose (P.O.P)",
@@ -206,18 +217,42 @@
     "useCurrentLocation": "Utiliser ma position actuelle",
     "savePop": "Enregistrer la preuve",
     "popSaved": "Preuve de pose enregistrée.",
-    "geolocationError": "Géolocalisation impossible.",
-    "createModalTitle": "Ajouter un panneau",
+    "geolocationError": "Géolocalisation impossible."
+  },
+  "regisseurNewBillboard": {
+    "title": "Ajouter un panneau",
+    "subtitle": "Renseignez les informations du panneau puis choisissez son image.",
+    "steps": {
+      "information": "Informations",
+      "images": "Choix des images"
+    },
     "titleField": "Titre",
+    "description": "Description",
     "type": "Type",
     "format": "Format",
     "city": "Ville",
     "country": "Pays",
     "address": "Adresse",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
     "monthlyPrice": "Prix mensuel",
     "currency": "Devise",
-    "imageUrl": "Image",
-    "createBillboard": "Créer le panneau"
+    "imageStepTitle": "Choisissez une image",
+    "imageStepDescription": "Reprenez une image déjà téléversée ou ajoutez-en une nouvelle.",
+    "chooseImage": "Choisir une image",
+    "changeImage": "Changer l'image",
+    "next": "Suivant",
+    "back": "Retour",
+    "create": "Créer le panneau",
+    "createdRedirect": "Panneau créé, redirection vers votre inventaire…"
+  },
+  "imagePicker": {
+    "title": "Choisir une image",
+    "myImages": "Mes images",
+    "addImage": "Ajouter une image",
+    "noImages": "Vous n'avez pas encore d'image téléversée.",
+    "selected": "Sélectionnée",
+    "confirm": "Valider"
   },
   "adminOverview": {
     "title": "Vue d'ensemble",
@@ -278,5 +313,29 @@
       "PENDING": "KYC en attente",
       "REJECTED": "KYC rejeté"
     }
+  },
+  "ErrorPage": {
+    "title": "Une erreur est survenue",
+    "description": "Nous n'avons pas pu charger cette page. Un problème temporaire est survenu.",
+    "retry": "Réessayer",
+    "goHome": "Retour à l'accueil",
+    "errorCode": "Code d'erreur"
+
+  },
+
+  "NotFoundPage": {
+    "title": "Page introuvable",
+    "description": "La page que vous cherchez n'existe pas ou a été déplacée.",
+    "backToHotels": "Voir les Panneaux",
+    "error404": "Erreur 404"
+  },
+  "billboardDetails": {
+    "description": "Description",
+    "noDescription": "Aucune description disponible.",
+    "city": "Ville",
+    "country": "Pays",
+    "monthlyPrice": "Prix mensuel",
+    "format": "Format",
+    "location": "Localisation"
   }
 }

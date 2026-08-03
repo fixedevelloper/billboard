@@ -12,7 +12,8 @@
     "changeImage": "Change image",
     "uploading": "Uploading…",
     "uploadError": "Failed to upload the image.",
-    "removeImage": "Remove image"
+    "removeImage": "Remove image",
+    "viewOnMap": "View on map"
   },
   "roles": {
     "ANNONCEUR": "Advertiser",
@@ -119,6 +120,7 @@
     "nav": {
       "annonceurOverview": "Overview",
       "mediaBuyerOverview": "Overview",
+      "regisseurOverview": "Overview",
       "searchBillboards": "Search billboards",
       "myOrders": "My orders",
       "myInventory": "My inventory",
@@ -193,7 +195,16 @@
     "payOnBehalf": "Pay on behalf of the advertiser"
   },
   "regisseur": {
-    "myInventory": "My inventory",
+    "title": "My billboard owner space",
+    "subtitle": "Overview of your account and billboard portfolio.",
+    "totalBillboards": "Billboards",
+    "available": "Available",
+    "reserved": "Reserved",
+    "viewInventory": "View my inventory",
+    "addBillboard": "Add a billboard"
+  },
+  "regisseurBillboards": {
+    "title": "My inventory",
     "addBillboard": "Add a billboard",
     "noBillboards": "You haven't registered any billboard yet.",
     "popTitle": "Proof of performance (P.O.P)",
@@ -206,18 +217,42 @@
     "useCurrentLocation": "Use my current location",
     "savePop": "Save proof",
     "popSaved": "Proof of performance saved.",
-    "geolocationError": "Unable to get your location.",
-    "createModalTitle": "Add a billboard",
+    "geolocationError": "Unable to get your location."
+  },
+  "regisseurNewBillboard": {
+    "title": "Add a billboard",
+    "subtitle": "Fill in the billboard's information, then choose its image.",
+    "steps": {
+      "information": "Information",
+      "images": "Choose images"
+    },
     "titleField": "Title",
+    "description": "Description",
     "type": "Type",
     "format": "Format",
     "city": "City",
     "country": "Country",
     "address": "Address",
+    "latitude": "Latitude",
+    "longitude": "Longitude",
     "monthlyPrice": "Monthly price",
     "currency": "Currency",
-    "imageUrl": "Image",
-    "createBillboard": "Create billboard"
+    "imageStepTitle": "Choose an image",
+    "imageStepDescription": "Reuse an image you already uploaded or add a new one.",
+    "chooseImage": "Choose an image",
+    "changeImage": "Change image",
+    "next": "Next",
+    "back": "Back",
+    "create": "Create billboard",
+    "createdRedirect": "Billboard created, redirecting to your inventory…"
+  },
+  "imagePicker": {
+    "title": "Choose an image",
+    "myImages": "My images",
+    "addImage": "Add an image",
+    "noImages": "You haven't uploaded any image yet.",
+    "selected": "Selected",
+    "confirm": "Confirm"
   },
   "adminOverview": {
     "title": "Overview",
@@ -278,5 +313,28 @@
       "PENDING": "KYC pending",
       "REJECTED": "KYC rejected"
     }
+  },
+  "ErrorPage": {
+    "title": "Something went wrong",
+    "description": "We couldn't load this page. A temporary problem has occurred.",
+    "retry": "Try Again",
+    "goHome": "Back to Home",
+    "errorCode": "Error Code"
+  },
+
+  "NotFoundPage": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for doesn't exist or has been moved.",
+    "backToHotels": "Browse billboards",
+    "error404": "Error 404"
+  },
+  "billboardDetails": {
+    "description": "Description",
+    "noDescription": "No description available.",
+    "city": "City",
+    "country": "Country",
+    "monthlyPrice": "Monthly price",
+    "format": "Format",
+    "location": "Location"
   }
 }

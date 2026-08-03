@@ -41,7 +41,8 @@ const NAV_ITEMS: Record<Role, NavItem[]> = {
     { href: "/media-buyer/orders", labelKey: "myOrders", icon: ShoppingCart },
   ],
   REGISSEUR: [
-    { href: "/regisseur", labelKey: "myInventory", icon: Building },
+    { href: "/regisseur", labelKey: "regisseurOverview", icon: LayoutDashboard },
+    { href: "/regisseur/billboards", labelKey: "myInventory", icon: Building },
     { href: "/regisseur/orders", labelKey: "myOrders", icon: FileText },
   ],
   ADMIN: [
