@@ -1,13 +1,13 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import { Loader2, MapPin, Search, Sparkles } from "lucide-react";
 
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { FieldShell } from "@/components/search/field-shell";
 import { cn } from "@/lib/utils";
 import { useDebouncedValue } from "@/hooks/use-debounced-value";
+import {FieldShell} from "@/features/billboards/field-shell";
+import useSWR from "swr";
 
 export interface LocationOption {
     code: string;
@@ -48,7 +48,7 @@ export function PickLocationAutocomplete({
   const inputRef = useRef<HTMLInputElement>(null);
   const debouncedQuery = useDebouncedValue(query, 300).trim();
 
-  const { data: options, isFetching } = useQuery({
+  const { data: options, isLoading } = useSWR({
     queryKey: ["pick-location-autocomplete", label, debouncedQuery],
     queryFn: () => fetchOptions(debouncedQuery),
     enabled: open && debouncedQuery.length >= minChars,
@@ -118,7 +118,7 @@ export function PickLocationAutocomplete({
           <div className="max-h-72 overflow-y-auto p-2">
             {debouncedQuery.length < minChars ? (
                 <p className="px-3 py-4 text-sm text-muted-foreground">{hintLabel}</p>
-            ) : isFetching ? (
+            ) : isLoading ? (
                 <div className="flex items-center justify-center gap-2 px-3 py-6 text-sm text-muted-foreground">
                   <Loader2 className="size-4 animate-spin" />
                   <span>Recherche en cours...</span>
@@ -127,7 +127,7 @@ export function PickLocationAutocomplete({
                 <p className="px-3 py-4 text-sm text-muted-foreground">{noResultsLabel}</p>
             ) : (
                 <div className="space-y-1">
-                  {options.map((option) => (
+                  {options.map((option: LocationOption) => (
                       <button
                           key={option.code}
                           type="button"

@@ -10,12 +10,14 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
-        <module name="billboard (2)" />
-        <module name="billboard (1)" />
-        <module name="billboard (3)" />
         <module name="billboard" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="billboard (1)" target="21" />
+      <module name="billboard (2)" target="1.8" />
+      <module name="billboard (3)" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">

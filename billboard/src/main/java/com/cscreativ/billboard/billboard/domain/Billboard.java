@@ -81,6 +81,10 @@ public class Billboard {
 
     // --- LOCALISATION & TRAFIC ---
 
+    /** Ville de référence (voir CityRepository) ; nullable pour les panneaux créés avant cette fonctionnalité */
+    @Column
+    private UUID cityId;
+
     @Column(nullable = false)
     private String city;
 
@@ -129,7 +133,7 @@ public class Billboard {
     private String imageUrl;
 
     /** Galerie de photos sous différents angles / vues jour & nuit */
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "billboard_images", joinColumns = @JoinColumn(name = "billboard_id"))
     @Column(name = "image_url")
     private List<String> galleryUrls = new ArrayList<>();
@@ -155,7 +159,7 @@ public class Billboard {
 
     public Billboard(
             String codeReference, UUID ownerId, String title, String description, BillboardType type,
-            String format, BigDecimal width, BigDecimal height, String city, String country,
+            String format, BigDecimal width, BigDecimal height, UUID cityId, String city, String country,
             String address, double latitude, double longitude, BigDecimal monthlyPrice,
             String currency, String imageUrl) {
         this.codeReference = codeReference;
@@ -166,6 +170,7 @@ public class Billboard {
         this.format = format;
         this.width = width;
         this.height = height;
+        this.cityId = cityId;
         this.city = city;
         this.country = country;
         this.address = address;

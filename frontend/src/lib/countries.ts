@@ -1,7 +1,8 @@
 // src/lib/countries.ts
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+
+import useSWR from "swr";
 
 export type Country = {
     countryName: string;
@@ -12,7 +13,7 @@ export type Country = {
 export type CountriesMap = Record<string, Country>; // clé = ISO2
 
 export function useCountriesQuery() {
-    return useQuery<CountriesMap>({
+    return useSWR<CountriesMap>({
         queryKey: ["countries"],
         queryFn: async () => {
             const res = await fetch("/data/countries.json");

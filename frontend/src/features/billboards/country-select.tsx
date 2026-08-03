@@ -1,7 +1,8 @@
 // src/components/checkout/country-select.tsx
 "use client";
 
-import { useMemo, useState } from "react";
+import
+{ useMemo, useState } from "react";
 import { Check, ChevronsUpDown, Globe } from "lucide-react";
 
 import { Button } from "@/components/ui/button";

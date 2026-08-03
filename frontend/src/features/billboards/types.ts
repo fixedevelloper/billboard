@@ -4,19 +4,34 @@ export type BillboardStatus = "AVAILABLE" | "RESERVED" | "MAINTENANCE" | "INACTI
 export interface Billboard {
   id: string;
   ownerId: string;
+  codeReference: string;
   title: string;
   description?: string;
   type: BillboardType;
   format: string;
+  width?: number;
+  height?: number;
+  facesCount: number;
+  illuminated: boolean;
+  digital: boolean;
+  resolution?: string;
+  spotDurationSeconds?: number;
+  cityId: string | null;
   city: string;
   country: string;
   address?: string;
+  environmentType?: string;
+  orientation?: string;
   latitude: number;
   longitude: number;
+  dailyImpressions?: number;
+  dailyPrice?: number;
   monthlyPrice: number;
   currency: string;
+  minBookingDays: number;
   status: BillboardStatus;
   imageUrl?: string;
+  galleryUrls: string[];
 }
 
 export interface BillboardSearchParams {
@@ -31,12 +46,25 @@ export interface BillboardCreateInput {
   description?: string;
   type: BillboardType;
   format: string;
-  city: string;
-  country: string;
+  width?: number;
+  height?: number;
+  facesCount?: number;
+  illuminated?: boolean;
+  digital?: boolean;
+  resolution?: string;
+  spotDurationSeconds?: number;
+  cityId: string;
   address?: string;
+  environmentType?: string;
+  orientation?: string;
   latitude: number;
   longitude: number;
-  monthlyPrice: number;
+  dailyImpressions?: number;
+  dailyPrice: number;
+  monthlyPrice?: number;
   currency: string;
+  minBookingDays?: number;
   imageUrl?: string;
+  galleryUrls?: string[];
 }
+export type BillboardUpdateInput = Partial<BillboardCreateInput>;
