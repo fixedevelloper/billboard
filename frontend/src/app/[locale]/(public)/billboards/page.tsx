@@ -14,6 +14,9 @@ import { useCartStore, useCartTotal } from "@/features/booking/useCartStore";
 import { useAuth } from "@/lib/AuthProvider";
 import { Badge } from "@/components/ui/badge";
 import {BillboardDetailsModal} from "@/features/billboards/BillboardDetailsModal";
+import {Building2} from "lucide-react";
+import {PickLocationAutocomplete} from "@/features/billboards/pick-location-autocomplete";
+import {CountrySelect} from "@/features/billboards/country-select";
 
 const CURRENCY = "XOF";
 
@@ -72,6 +75,10 @@ export default function PublicBillboardsPage() {
     );
   }
 
+  function selectedCountry(code: string) {
+
+  }
+
   return (
       <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
         <div className="rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm dark:border-zinc-800 dark:bg-zinc-950">
@@ -88,6 +95,33 @@ export default function PublicBillboardsPage() {
           </div>
 
           <div className="mt-5 grid gap-3 md:grid-cols-[1.4fr_0.8fr_auto]">
+            <FormField
+                control={form.control}
+                name={`travelers.${index}.nationality`}
+                render={({ field }) => (
+                    <FormItem className="col-span-1">
+                      <FormLabel className="text-xs font-bold text-muted-foreground/90">{t("nationality")}</FormLabel>
+                      <FormControl>
+                        <CountrySelect
+                            value={field.value || undefined}
+                            onChange={(iso2) => field.onChange(iso2)}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                )}
+            />
+            <PickLocationAutocomplete
+                icon={<Building2 className="size-4 text-primary" />}
+                label={t("locationLabel")}
+                placeholder={t("locationPlaceholder")}
+                searchPlaceholder={t("locationPlaceholder")}
+                hintLabel={t("locationHint")}
+                noResultsLabel={t("locationNoResults")}
+                initialLabel=""
+                fetchOptions={searchCitySuggestions}
+                onSelect={(option) => selectedCountry(option.code)}
+            />
             <Input
                 placeholder={t("cityPlaceholder")}
                 value={city}
