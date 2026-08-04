@@ -1,2 +1,1 @@
-org.springframework.boot.EnvironmentPostProcessor=\
-com.cscreativ.billboard.shared.config.DotenvEnvironmentPostProcessor
+org.springframework.context.ApplicationContextInitializer=me.paulschwarz.springdotenv.spring.DotenvApplicationInitializer

@@ -40,7 +40,8 @@ public class Order {
     @Column(nullable = false, length = 3)
     private String currency;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+    // ✅ Correction : Suppression de @ElementCollection et ajout de fetch = FetchType.EAGER
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<OrderItem> items = new ArrayList<>();
 
     @Column(nullable = false, updatable = false)
